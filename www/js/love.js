@@ -51,11 +51,11 @@ function setTitleColor(days){
 
 function showDays() {
     if (typeof (Storage) !== "undefined") {
-        if (!localStorage.lasttime) {
+        if (!window.localStorage.getItem("lasttime")) {
             // if lasttime key is empty then set to today
-            localStorage.lasttime = Date();
+            window.localStorage.setItem("lasttime" , Date());
         }
-        var lasttime = new Date(localStorage.lasttime);
+        var lasttime = new Date(window.localStorage.getItem("lasttime"));
         var today = new Date();
         var _day = 24 * 3600 * 1000;
         var daysDiff = Math.floor(today / _day) - Math.floor(lasttime / _day);
@@ -74,7 +74,7 @@ function showDays() {
 function setToday() {
     window.alert("Your last time is set to Today!");
     if(typeof(Storage)!=="undefined") {
-        localStorage.lasttime=Date();
+        window.localStorage.setItem("lasttime" , Date());
         showDays();
     }
 }
